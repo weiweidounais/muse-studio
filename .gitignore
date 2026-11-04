@@ -1,0 +1,16 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+node_modules/
+integration/runtime/
+integration/downloads/
+integration/toonflow/data/
+integration/toonflow/build/
+integration/toonflow/.hutch/
+*.log
+*.pid
+*.zip
+*.tar.gz
+*.tsbuildinfo
+

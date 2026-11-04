@@ -1,0 +1,15 @@
+import { fileURLToPath } from 'node:url';
+const serverDirectory=fileURLToPath(new URL('./toonflow/apps/server',import.meta.url));
+const dataDirectory=fileURLToPath(new URL('./toonflow/data',import.meta.url));
+const {default:Conf}=await import(Bun.resolveSync('conf',serverDirectory));
+import {createInterface} from 'node:readline/promises';
+const reader=createInterface({input:process.stdin,terminal:false});
+const first=await reader[Symbol.asyncIterator]().next();reader.close();
+const input=JSON.parse(first.value);
+if(typeof input.key!=='string'||input.key.length<20)throw Error('Invalid secret input');
+const config=new Conf({cwd:dataDirectory,configName:'settings',configFileMode:0o600});
+config.set('museSecrets',{...config.get('museSecrets',{}),deepSeek:input.key});
+const previous=config.get('settings',{});
+const provider={id:'deepSeek',label:'DeepSeek · 服务端密钥',apiUrl:'https://api.deepseek.com',protocol:'openai-completions',apiKey:'server:deepSeek',models:[{id:'deepseek-flash',label:'DeepSeek Flash',contextWindow:1000000,maxOutputTokens:8192,reasoningEfforts:false}]};
+config.set('settings',{...previous,ui:{...previous.ui,language:'zh-CN',theme:'dark',startupAnimation:false},privacy:{...previous.privacy,dataCollectionEnabled:false},customProviders:[...(previous.customProviders??[]).filter(p=>p.id!=='deepSeek'),provider],ffmpeg:{mode:'auto'}});
+console.log(JSON.stringify({configured:true,provider:'DeepSeek',model:'deepseek-flash',secretStorage:'server-only',fileMode:'0600'}));

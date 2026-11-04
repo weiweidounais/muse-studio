@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#151619">
+  <title>MUSE Studio · 集成实测</title>
+  <style>
+    *{box-sizing:border-box}body{margin:0;background:#151619;color:#eee;font:15px/1.8 system-ui,sans-serif}a{color:#ceee92}header,main,footer{max-width:1180px;margin:auto;padding:28px}header{display:flex;justify-content:space-between;gap:20px;border-bottom:1px solid #34373b}header strong{font-size:22px}nav{display:flex;gap:22px}h1{font-size:clamp(30px,5vw,52px);line-height:1.25;max-width:830px;margin:24px 0}h2{font-size:24px;margin:0 0 12px}p{color:#aeb3bc}.eyebrow{color:#ceee92;letter-spacing:3px;font-size:11px}.notice{padding:18px 22px;border:1px solid #4a533b;background:#252d20;border-radius:10px;color:#d0d9c1}.grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin:32px 0}.card{border:1px solid #363b43;border-radius:12px;overflow:hidden;background:#1f2227}.card div{padding:24px}.card img{display:block;width:100%;height:auto}.wide{margin:28px 0}video{display:block;width:100%;max-height:620px;background:#0a0a0a;border-radius:8px}.button{display:inline-block;padding:10px 18px;background:#ceee92;color:#25311e;border-radius:8px;text-decoration:none;font-weight:650}footer{border-top:1px solid #34373b;color:#939ba7;font-size:12px}ul{padding-left:22px}@media(max-width:760px){header,main,footer{padding:20px}.grid{grid-template-columns:1fr}header{flex-direction:column}nav{flex-wrap:wrap}}
+  </style>
+</head>
+<body>
+  <header><strong>✳ MUSE Studio</strong><nav><a href="index.html">交互原型</a><a href="https://github.com/weiweidounais/muse-studio">GitHub 源码 ↗</a></nav></header>
+  <main>
+    <p class="eyebrow">IMPLEMENTATION / 2026.11.04</p>
+    <h1>从创作工作流，<br>到一次真实的集成验证。</h1>
+    <p>Toonflow × Fabric.js × DeepSeek × FFmpeg。下面展示本机集成的真实截图与导出结果。</p>
+    <div class="notice">当前网页展示已完成的集成记录；在线交互原型使用模拟任务。真实模型与 FFmpeg 服务需自行部署，本站不调用你的模型，也不公开服务端密钥。</div>
+    <div class="grid">
+      <article class="card"><img src="evidence/开源集成-商品工作台.png" alt="真实 DeepSeek 创意与 Fabric 商品编辑工作台"><div><h2>商品创意与对象编辑</h2><p>创作要求 → DeepSeek JSON → 审阅应用 → 图层编辑 → 多比例 PNG。图片、背景与文字独立保存。</p><a href="evidence/开源集成-商品海报.png">查看导出的海报 ↗</a></div></article>
+      <article class="card"><img src="evidence/开源集成-短剧工作台.png" alt="四镜头脚本、角色设定与上传素材"><div><h2>脚本确认与分镜制作</h2><p>故事和角色 → 四镜头脚本 → 编辑确认 → 上传素材 → 编码导出。角色变更后重新确认。</p><a href="evidence/开源集成-短剧工作台.png">查看完整工作台截图 ↗</a></div></article>
+    </div>
+    <section class="card wide"><div><p class="eyebrow">NATIVE WORKFLOW</p><h2>四组图像与视频节点</h2><p>已按分镜建立 8 个节点和 4 条依赖。媒体模型尚未配置，因此节点显示待生成；不会用预置素材冒充生成结果。</p></div><img src="evidence/开源集成-原生镜头工作流.png" alt="Toonflow 原生画布中的八个镜头节点"></section>
+    <section class="card wide"><div><p class="eyebrow">REAL EXPORT</p><h2>20 秒静帧 MP4</h2><p>实际通过浏览器提交、后台编码并下载，FFprobe 核验为 H.264、960×540、24fps、20 秒。四个镜头使用同一张预置剧照，只验证编码链路；此视频没有 AI 动态生成、配音或字幕。</p><video controls preload="metadata" poster="assets/story.png"><source src="evidence/开源集成-分镜静帧.mp4" type="video/mp4">浏览器不支持播放，请<a href="evidence/开源集成-分镜静帧.mp4">下载 MP4</a>。</video></div></section>
+    <section class="card wide"><div><h2>方案与验证报告</h2><ul><li><a href="https://github.com/weiweidounais/muse-studio/blob/main/docs/01-模型选型与评估方案.md">模型选型与评估方案</a></li><li><a href="https://github.com/weiweidounais/muse-studio/blob/main/docs/02-场景与用户说明.md">场景与用户说明</a></li><li><a href="https://github.com/weiweidounais/muse-studio/blob/main/docs/03-产品策略与技术方案.md">产品策略与技术方案</a></li><li><a href="https://github.com/weiweidounais/muse-studio/blob/main/evidence/开源集成验收记录.md">实际验收记录与未验证范围</a></li></ul><a class="button" href="index.html">进入交互原型 ↗</a></div></section>
+  </main>
+  <footer>本机集成验证不等同于生产验收或正式模型评测。示例商品与剧照为虚构展示素材；第三方代码保留原许可证。</footer>
+</body>
+</html>
